@@ -1,12 +1,44 @@
 @import "tailwindcss";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+:root {
+    --indigo-500: #6366f1;
+    --indigo-600: #4f46e5;
+    --indigo-700: #4338ca;
+    --pink-500: #ec4899;
+    --gray-700: #374151;
+    --gray-800: #1f2937;
+    --green-600: #16a34a;
+    --emerald-500: #10b981;
+}
 
-@theme {
-    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
-        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-        "Noto Color Emoji";
+/* Custom styles */
+@layer components {
+    .gradient-text {
+        @apply bg-gradient-to-r from-[--indigo-500] to-[--pink-500] bg-clip-text text-transparent;
+    }
+
+    .nav-link {
+        @apply relative transition-all duration-300;
+    }
+
+    .nav-link::after {
+        @apply content-[''] absolute w-0 h-0.5 bottom-0 left-0 bg-gradient-to-r from-[--indigo-500] to-[--pink-500] transition-all duration-300;
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+        @apply w-full;
+    }
+
+    .btn-primary {
+        @apply bg-gradient-to-r from-[--indigo-600] to-[--indigo-700] text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg;
+    }
+
+    .card {
+        @apply bg-[--gray-800]/50 backdrop-blur-md border border-[--gray-700]/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-[--indigo-500];
+    }
+
+    .notification-success {
+        @apply bg-gradient-to-r from-[--green-600] to-[--emerald-500] text-white p-4 rounded-lg flex items-center shadow-lg;
+    }
 }
